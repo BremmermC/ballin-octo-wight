@@ -3,7 +3,7 @@ import struct
 import sys
 
 size = 4096
-
+#Create socket
 try:
     s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 except socket.error, msg:
@@ -23,6 +23,7 @@ except socket.gaierror:
     sys.exit()
 
 print 'IP address of ' + host + ' is ' + remote_ip
+#Make connection
 s.connect((remote_ip , port))
 
 version = 1
@@ -30,7 +31,7 @@ msg_type = 1
 length = 4
 amount_received = 0
 
-
+#Send data to server
 header = struct.pack("!BBH", version, msg_type, length)
 amount_expected = len(header)
 while 1:
